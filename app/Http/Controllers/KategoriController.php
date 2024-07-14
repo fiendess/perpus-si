@@ -20,7 +20,8 @@ class KategoriController extends Controller
     public function create()
     {
         return view('dashboard.admin.create-kategori', [
-            'title' => 'Tambah Kategori'
+            'title' => 'Tambah Kategori',
+             'kategori_buku' => kategori_buku::all()
         ]);
     }
 
@@ -34,7 +35,7 @@ class KategoriController extends Controller
             'nama_kategori' => $request->nama_kategori
         ]);
 
-        return redirect()->route('dashboard.kategori.index');
+        return redirect('/dashboard/kategori')->with('success', 'Kategori Berhasil Ditambahkan');
     }
 
     public function edit(kategori_buku $kategori)

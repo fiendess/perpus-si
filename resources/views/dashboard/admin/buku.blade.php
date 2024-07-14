@@ -2,10 +2,17 @@
 
 @section('container')
 <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
-        <h1 class="h2">Daftar Buku</h1> 
+        <h1 class="h2">{{ $title }}</h1> 
       </div>
       <div class="table-responsive small">
         <a href="/dashboard/buku/create" class="btn btn-primary mb-3"><i class="bi bi-plus-lg">Tambah Buku Baru</i></a>
+        @if(session()->has('success'))
+        <div class="alert alert-success alert-dismissible fade show" role="alert">
+        {{ session('success') }}
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+      </div>
+        @endif
+        
         <table class="table table-striped table-sm">
           <thead>
             <tr>
@@ -32,8 +39,14 @@
               <td>{{ $b->kategori_buku->nama_kategori }}</td>
               <td>{{ $b->status }}</td>
               <td>
-                <a href="/dashboard/" class="badge bg-warning"><span class="bi bi-pencil-square"> Edit</span></a>
-                <a href="/dashboard/" class="badge bg-danger"><span class="bi bi-trash"> Delete</span></a>
+                <a href="{{ route('dashboard.buku.edit-buku', $b->id) }}" class="badge bg-warning"><span class="bi bi-pencil-square"> Edit</span></a>
+                <form action="{{ route('dashboard.buku.destroy', $b->id) }}" method="POST" class="d-inline">
+                    @csrf
+                    @method('DELETE')
+                    <button type="submit" class="badge bg-danger border-0" onclick="return confirm('Yakin ingin menghapus buku ini?')"><span class="bi bi-trash"> Delete</span></button>
+                </form>
+            </td>
+
             </tr>
             @endforeach
             

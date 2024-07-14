@@ -31,7 +31,7 @@ class BukuController extends Controller
         return view('dashboard.admin.create', [
             'title' => 'Tambah Buku',
             'kategori_buku' => kategori_buku::all(),
-            'user' => User::all()
+            'buku' => buku::all()
         ]);
     }
 
@@ -40,7 +40,19 @@ class BukuController extends Controller
      */
     public function store(Request $request)
     {
-        
+        $validatedData = $request->validate([
+            'judul' => 'required',
+            'pengarang' => 'required',
+            'penerbit' => 'required',
+            'tahun_terbit' => 'required',
+            'jumlah_buku' => 'required',
+            // 'status' => 'required',
+            'id_kategori' => 'required|exists:kategori_buku,id'
+        ]);
+
+        buku::create($validatedData);
+
+        return redirect('/dashboard/buku')->with('success', 'Data Buku Berhasil Ditambahkan');
     }
 
     /**
@@ -48,7 +60,7 @@ class BukuController extends Controller
      */
     public function show(buku $buku)
     {
-        //
+
     }
 
     /**
@@ -56,7 +68,12 @@ class BukuController extends Controller
      */
     public function edit(buku $buku)
     {
-        //
+        return view ('dashboard.admin.edit-buku', [ 
+            'title' => 'Edit Buku',
+            'buku' => $buku,
+            'kategori_buku' => kategori_buku::all()
+        ]);
+        
     }
 
     /**
@@ -64,7 +81,19 @@ class BukuController extends Controller
      */
     public function update(Request $request, buku $buku)
     {
-        //
+        $validatedData = $request->validate([
+            'judul' => 'required',
+            'pengarang' => 'required',
+            'penerbit' => 'required',
+            'tahun_terbit' => 'required',
+            'jumlah_buku' => 'required',
+            'status' => 'required',
+            'id_kategori' => 'required|exists:kategori_buku,id'
+        ]);
+        
+        $buku->update($validatedData);
+
+         return redirect('/dashboard/buku')->with('success', 'Data Buku Berhasil Diubah');
     }
 
     /**
@@ -72,6 +101,7 @@ class BukuController extends Controller
      */
     public function destroy(buku $buku)
     {
-        //
+        $buku->delete();
+        return redirect()->route('dashboard.buku.index')->with('success', 'Data Buku Berhasil Dihapus');
     }
 }
