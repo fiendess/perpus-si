@@ -58,9 +58,13 @@ class BukuController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(buku $buku)
+    public function search()
     {
-
+        return view('dashboard.admin.buku', [
+            'title' => 'Data Buku',
+            'buku' => buku::latest()->filter(request(['search']))->get(),
+            'kategori_buku' => kategori_buku::all()
+        ]);
     }
 
     /**
@@ -103,5 +107,14 @@ class BukuController extends Controller
     {
         $buku->delete();
         return redirect()->route('dashboard.buku.index')->with('success', 'Data Buku Berhasil Dihapus');
+    }
+
+    public function katalog()
+    {
+        return view('dashboard.user.katalog', [
+            'title' => 'Katalog Buku',
+            'buku' => buku::all(),
+            'kategori_buku' => kategori_buku::all()
+        ]);
     }
 }

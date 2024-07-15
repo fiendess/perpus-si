@@ -2,7 +2,7 @@
 
 @section('container')
 <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
-        <h1 class="h2">Dashboard</h1> 
+    <h1 class="h2">{{ $title }}</h1> 
       </div>
       
       <div class="row mt-5">
@@ -35,7 +35,7 @@
                 <div class="row">
                     <div class="col-6"><i class="bi bi-people"></i></div>
                     <div class="col-6 d-flex flex-column justify-content-center align-items-lg-end">
-                        <div class="card-desc">User</div>
+                        <div class="card-desc">Anggota</div>
                         <div class="card-count">{{ $userCount }}</div>
                 </div>
             </div>

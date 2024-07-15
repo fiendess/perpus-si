@@ -7,17 +7,17 @@
         </div>
         <div class="offcanvas-body d-md-flex flex-column p-0 pt-lg-3 overflow-y-auto">
           <ul class="nav flex-column">
+            @if(Auth::user()->id_role == 1)
             <li class="nav-item">
               <a class="nav-link d-flex align-items-center gap-2 active" aria-current="page" href="/dashboard">
                <i class="bi bi-house"></i>
                 Dashboard
               </a>
             </li>
-            @if(Auth::user()->id_role == 1)
             <li class="nav-item">
               <a class="nav-link d-flex align-items-center gap-2" href="{{ route('dashboard.admin.user') }}">
                  <i class="bi bi-people"></i>
-                Daftar User
+                Daftar Anggota
               </a>
             </li>
             <li class="nav-item">
@@ -34,12 +34,49 @@
             </li>
             <li class="nav-item">
               <a class="nav-link d-flex align-items-center gap-2" href="/dashboard/peminjaman">
-                 <i class="bi bi-cart"></i>
+                 <i class="bi bi-file-earmark-diff"></i>
                 Peminjaman
+              </a>
+            </li>
+
+            <li class="nav-item">
+              <a class="nav-link d-flex align-items-center gap-2" href="/dashboard/pengembalian">
+                 <i class="bi bi-file-earmark-check"></i>
+                Pengembalian
               </a>
             </li>
             @endif
           </ul>
+
+          <ul class="nav flex-column">
+          @if(Auth::user()->id_role == 0)
+          <li class="nav-item">
+              <a class="nav-link d-flex align-items-center gap-2 active" aria-current="page" href="/dashboard/user">
+               <i class="bi bi-house"></i>
+                Dashboard
+              </a>
+            </li>
+          <li class="nav-item">
+              <a class="nav-link d-flex align-items-center gap-2" href="{{ route('dashboard.user.profil') }}">
+                 <i class="bi bi-people"></i>
+                Profile
+              </a>
+            </li>
+          <li class="nav-item">
+              <a class="nav-link d-flex align-items-center gap-2" href="{{ route('dashboard.user.buku') }}">
+                 <i class="bi bi-book"></i>
+                Katalog Buku
+              </a>
+            </li>
+          <li class="nav-item">
+              <a class="nav-link d-flex align-items-center gap-2" href="{{ route('dashboard.user.peminjaman') }}">
+                 <i class="bi bi-cart"></i>
+                Peminjaman
+              </a>
+            </li>
+          </ul>
+      
+          @endif
 
           <hr class="my-3">
 

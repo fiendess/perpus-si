@@ -7,13 +7,16 @@ use App\Models\buku;
 use App\Models\kategori_buku;
 use App\Models\User;
 use App\Models\peminjaman;
+use App\Models\roles;
 class DashboardController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
+    
     public function index()
     {
+        $users = User::with('roles')->get();
 
         $bukuCount = buku::count();
         $kategoriCount = kategori_buku::count();
@@ -22,7 +25,8 @@ class DashboardController extends Controller
             'title' => 'Dashboard Admin',
             'bukuCount' => $bukuCount,
             'kategoriCount' => $kategoriCount,
-            'userCount' => $userCount
+            'userCount' => $userCount,
+            'users' => $users
 
         ]);
     }
@@ -30,7 +34,7 @@ class DashboardController extends Controller
     public function user()
     {
         return view('dashboard.user.index', [
-            'title' => 'Dashboard User',
+            'title' => 'Dashboard Anggota',
             'user' => User::all()
         ]);
     }
@@ -39,7 +43,7 @@ class DashboardController extends Controller
     {
         $user = User::all();
         return view('dashboard.admin.user', [
-            'title' => 'Data User',
+            'title' => 'Data Anggota',
             'user' => $user
         ]);
     }

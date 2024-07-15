@@ -12,7 +12,7 @@
         <input type="text" class="form-control" id="nama_kategori" name="nama_kategori">
       </div>
 
-        <button type="submit" class="btn btn-primary mb-3   ">Tambah Buku</button>
+        <button type="submit" class="btn btn-primary mb-3   ">Tambah Kategori</button>
         
 
     </form>

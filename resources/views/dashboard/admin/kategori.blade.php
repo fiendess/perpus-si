@@ -5,7 +5,7 @@
         <h1 class="h2">{{ $title }}</h1> 
       </div>
       <div class="table-responsive small">
-        <a href="/dashboard/kategori/create" class="btn btn-primary mb-3"><i class="bi bi-plus-lg">Tambah Kategori Baru</i></a>
+         <a class="btn btn-primary mb-3" href="/dashboard/kategori/create" role="button"><i class="bi bi-plus"></i>Tambah Kategori</a>
         @if(session()->has('success'))
         <div class="alert alert-success alert-dismissible fade show" role="alert">
         {{ session('success') }}
@@ -13,7 +13,7 @@
       </div>
         @endif
         <div class="col-lg-6">
-        <table class="table table-striped table-sm">
+        <table class="table table-striped table-bordered table-sm mx-auto">
           <thead>
             <tr>
               <th scope="col">No</th>
@@ -27,8 +27,12 @@
               <td>{{ $loop->iteration }}</td>
               <td>{{ $k->nama_kategori }}</td>
               <td>
-                <a href="/dashboard/" class="badge bg-warning"><span class="bi bi-pencil-square"> Edit</span></a>
-                <a href="/dashboard/" class="badge bg-danger"><span class="bi bi-trash"> Delete</span></a>
+                <a class="btn btn-warning btn-sm" href="" role="button"><i class="bi bi-pencil-square"></i>Edit</a>
+                <form action="" method="POST" class="d-inline">
+                    @csrf
+                    @method('DELETE')
+                    <button type="submit" class="btn btn-danger btn-sm"  onclick="return confirm('Yakin ingin menghapus buku ini?')"><i class="bi bi-trash"></i>Delete</button>
+                </form>
             </tr>
             @endforeach
            

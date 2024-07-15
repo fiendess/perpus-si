@@ -17,7 +17,8 @@ class peminjaman extends Model
         'tanggal_pinjam',
         'tanggal_kembali',
         'tanggal_jatuh_tempo',
-        'denda'
+        'denda',
+        'status'
     ];
 
     public function user()
@@ -30,7 +31,24 @@ class peminjaman extends Model
         return $this->belongsTo(buku::class, 'id_buku');
     }
 
-    
+    public function scopeFilter($query, array $filters)
+    {
+
+        $query->when($filters['search'] ?? false, function($query, $search) {
+            return $query->whereHas('user', function ($query) use ($search) {
+                    $query->where('name', 'like', '%' . $search . '%');
+                })->orWhereHas('buku', function ($query) use ($search) {
+                    $query->where('judul', 'like', '%' . $search . '%');
+                })->orWhere('id_user', 'like', '%' . $search . '%')
+                ->orWhere('id_buku', 'like', '%' . $search . '%')
+                ->orWhere('tanggal_pinjam', 'like', '%' . $search . '%')
+                ->orWhere('tanggal_kembali', 'like', '%' . $search . '%')
+                ->orWhere('tanggal_jatuh_tempo', 'like', '%' . $search . '%')
+                ->orWhere('denda', 'like', '%' . $search . '%')
+                ->orWhere('status', 'like', '%' . $search . '%');
+        
+        });
+    }
 
 
 }
