@@ -45,7 +45,7 @@
               <th scope="col">Tanggal Kembali</th>
               <th scope="col">Tanggal Jatuh Tempo</th>
               <th scope="col">Status</th>
-              <th scope="col">Aksi</th>
+
             </tr>
           </thead>
           <tbody>

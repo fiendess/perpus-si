@@ -83,21 +83,21 @@ class BukuController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, buku $buku)
+    public function update(Request $request, Buku $buku)
     {
         $validatedData = $request->validate([
             'judul' => 'required',
             'pengarang' => 'required',
             'penerbit' => 'required',
-            'tahun_terbit' => 'required',
-            'jumlah_buku' => 'required',
+            'tahun_terbit' => 'required|integer',
+            'jumlah_buku' => 'required|integer',
             'status' => 'required',
             'id_kategori' => 'required|exists:kategori_buku,id'
         ]);
-        
+
         $buku->update($validatedData);
 
-         return redirect('/dashboard/buku')->with('success', 'Data Buku Berhasil Diubah');
+        return redirect('/dashboard/buku')->with('success', 'Data Buku Berhasil Diubah');
     }
 
     /**

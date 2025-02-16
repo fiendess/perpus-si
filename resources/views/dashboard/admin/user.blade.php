@@ -15,7 +15,7 @@
               <th scope="col">Alamat</th>
               <th scope="col">No Telepon</th>
               <th scope="col">Role</th>
-              <th scope="col">Aksi</th>
+            
             </tr>
           </thead>
           <tbody>
@@ -27,13 +27,6 @@
               <td>{{ $u->alamat }}</td>
               <td>{{ $u->no_telp }}</td>
               <td>{{ $u->roles->nama }}</td>
-              <td>
-                <a class="btn btn-warning btn-sm" href="" role="button"><i class="bi bi-pencil-square"></i>Edit</a>
-                <form action="" method="POST" class="d-inline">
-                    @csrf
-                    @method('DELETE')
-                    <button type="submit" class="btn btn-danger btn-sm"  onclick="return confirm('Yakin ingin menghapus buku ini?')"><i class="bi bi-trash"></i>Delete</button>
-                </form>
             </tr>
             @endforeach
             

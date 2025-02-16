@@ -14,18 +14,28 @@
 
 <form method="POST" action="{{ route('dashboard.user.updateProfil') }}">
     @csrf
+
+    <div class="mb-3">
+        <label for="id" class="form-label">Id Anggota</label>
+        <input type="text" class="form-control" id="id" value="{{ $user->id }}" readonly>
+    </div>
+
     <div class="mb-3">
         <label for="name" class="form-label">Nama</label>
         <input type="text" class="form-control" id="name" name="name" value="{{ old('name', $user->name) }}" required>
     </div>
+
     <div class="mb-3">
         <label for="alamat" class="form-label">Alamat</label>
         <input type="text" class="form-control" id="alamat" name="alamat" value="{{ old('alamat', $user->alamat) }}" required>
     </div>
+
     <div class="mb-3">
         <label for="no_telp" class="form-label">No. Telp</label>
         <input type="text" class="form-control" id="no_telp" name="no_telp" value="{{ old('no_telp', $user->no_telp) }}" required>
     </div>
+
     <button type="submit" class="btn btn-primary">Update Profil</button>
 </form>
+
 @endsection

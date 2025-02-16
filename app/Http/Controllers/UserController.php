@@ -72,18 +72,18 @@ class UserController extends Controller
     {
         $user = Auth::user();
 
+        // Validasi input
         $validatedData = $request->validate([
             'name' => 'required|string|max:255',
             'alamat' => 'required|string|max:255',
             'no_telp' => 'required|string|max:15',
-
         ]);
 
+        // Update profil tanpa mengubah ID
         $user->update($validatedData);
 
         return redirect()->route('dashboard.user.profil')->with('success', 'Profil berhasil diperbarui');
     }
-
     /**
      * Show the form for creating a new resource.
      */

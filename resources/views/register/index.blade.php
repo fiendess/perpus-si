@@ -62,7 +62,7 @@
     <h1 class="h3 mb-3 fw-normal">Registrasi</h1>
     <div class="form-floating">
               <input type="name" name="name" class="form-control @error('name')is-invalid @enderror" id="name" placeholder="name" required value="{{ old('name') }}">
-              <label for="name">Nama</label>
+              <label for="name">Username</label>
               @error('name')
               <div class="invalid-feedback">
                  {{ $message }}
@@ -71,7 +71,7 @@
             </div>
     <div class="form-floating mt-3">
               <input type="password" name="password" class="form-control  @error('password')is-invalid @enderror" id="floatingPassword" placeholder="Password" required>
-              <label for="floatingPassword">Kata Sandi</label>
+              <label for="floatingPassword">Password</label>
                @error('password')
               <div class="invalid-feedback">
                  {{ $message }}

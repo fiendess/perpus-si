@@ -9,12 +9,15 @@
     @csrf
 
     <div class="mb-3">
-        <label for="id_user" class="form-label">ID User</label>
+        <label for="id_user" class="form-label">ID Anggota</label>
        <select class="form-select" id="id_user" name="id_user" required>
-            <option value="" disabled selected>Pilih User</option>
-            @foreach ($user as $u)
-                <option value="{{ $u->id }}">{{ $u->name }}</option>
+            <option value="" disabled selected>Pilih Anggota</option>
+           @foreach ($user as $u)
+                @if ($u->id_role !== 1) 
+                    <option value="{{ $u->id }}">{{ $u->name }} ({{ $u->id }})</option>
+                @endif
             @endforeach
+
         </select>
     </div>
 

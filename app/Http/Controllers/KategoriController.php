@@ -28,7 +28,10 @@ class KategoriController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'nama_kategori' => 'required'
+            'nama_kategori' => 'required|unique:kategori_buku,nama_kategori'
+        ], [
+            'nama_kategori.unique' => 'Kategori sudah ada, silahkan pilih kategori lain.'
+
         ]);
 
         kategori_buku::create([

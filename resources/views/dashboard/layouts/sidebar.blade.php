@@ -1,5 +1,6 @@
     
-    <div class="sidebar border border-right col-md-3 col-lg-2 p-0 bg-body-tertiary vh-100">
+ <div class="sidebar border border-right col-md-3 col-lg-2 p-0 bg-body-tertiary vh-100 position-relative">
+
       <div class="offcanvas-md offcanvas-end bg-body-tertiary" tabindex="-1" id="sidebarMenu" aria-labelledby="sidebarMenuLabel">
         <div class="offcanvas-header">
           <h5 class="offcanvas-title" id="sidebarMenuLabel">Dashboard Perpustakaan</h5>
@@ -80,15 +81,17 @@
 
           <hr class="my-3">
 
-          <ul class="nav flex-column mb-auto">
+          <ul class="nav flex-column position-absolute bottom-0 start-0 w-100">
             <form action="/logout" method="post">
-            @csrf
-            
-            <li>
-                <button type="submit" class="nav-link d-flex align-items-center gap-2" href="#">Logout</button>
-            </li>
-          </form>
-          </ul>
+                @csrf
+                <li>
+                    <button type="submit" class="nav-link d-flex align-items-center gap-2 text-danger px-3 py-2">
+                        <i class="bi bi-box-arrow-right"></i> Logout
+                    </button>
+                </li>
+            </form>
+        </ul>
+
         </div>
       </div>
     </div>
